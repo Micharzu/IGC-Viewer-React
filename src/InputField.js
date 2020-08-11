@@ -12,8 +12,6 @@ const InputField = (props) => {
   //stan inputa
   const [search, setSearch] = useState("");
 
-  const [numer, setNumer] = useState(1);
-
   useEffect(() => {
     getFile();
   }, [fileURL]);
