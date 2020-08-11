@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 
-const InputField = () => {
+const InputField = (props) => {
   //przykładowy plik
   const sampleFile =
     "https://xcportal.pl/sites/default/files/tracks/2020-06-09/069daro396091568.igc";
   //proxy
   const proxy = "https://cors-anywhere.herokuapp.com/";
 
-  //aktywny plik igc
-  const [file, setFile] = useState();
   //stan aktywnego url pliku igc
   const [fileURL, setFileURL] = useState(proxy + sampleFile);
   //stan inputa
   const [search, setSearch] = useState("");
 
-  //zmie pobierz plik kiedy zmieni się stan pliku
+  const [numer, setNumer] = useState(1);
+
   useEffect(() => {
     getFile();
   }, [fileURL]);
@@ -22,9 +21,7 @@ const InputField = () => {
   const getFile = async () => {
     const response = await fetch(fileURL);
     const data = await response.text();
-
-    console.log(data);
-    setFile(data);
+    updateFile(data);
   };
 
   const updateSearch = (e) => {
@@ -33,8 +30,13 @@ const InputField = () => {
 
   const getSearch = (e) => {
     e.preventDefault();
-    setFileURL(search);
+    setFileURL(proxy + search);
     setSearch("");
+    //
+  };
+
+  const updateFile = (newFile) => {
+    props.setFile(newFile);
   };
 
   return (
