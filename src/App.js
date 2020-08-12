@@ -1,22 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import InputField from "./InputField";
 
+import { DataProvider } from "./DataContext";
+
 const App = () => {
-  const [textfile, setTextfile] = useState("");
-
-  const setFile = (data) => {
-    if (data) {
-      setTextfile(data);
-      console.log(textfile);
-    }
-  };
-
   return (
-    <div>
-      <h2>IGC VIEWER</h2>
-      <InputField setFile={setFile} />
-    </div>
+    <DataProvider>
+      <div>
+        <h2>IGC VIEWER</h2>
+
+        <InputField />
+      </div>
+    </DataProvider>
   );
 };
 

@@ -1,6 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { DataContext } from "./DataContext";
 
-const InputField = (props) => {
+const InputField = () => {
+  const { targetFile } = useContext(DataContext);
+
+  const [flightFile, setFlightFile] = targetFile;
+
   //przykładowy plik
   const sampleFile =
     "https://xcportal.pl/sites/default/files/tracks/2020-06-09/069daro396091568.igc";
@@ -9,17 +14,20 @@ const InputField = (props) => {
 
   //stan aktywnego url pliku igc
   const [fileURL, setFileURL] = useState(proxy + sampleFile);
+  // const [fileURL, setFileURL] = useState("");
+
   //stan inputa
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    getFile();
+    if (fileURL.slice(-4) === ".igc") {
+      getFile();
+    }
   }, [fileURL]);
 
   const getFile = async () => {
-    const response = await fetch(fileURL);
-    const data = await response.text();
-    updateFile(data);
+    const response = await fetch(proxy + fileURL);
+    setFlightFile(await response.text());
   };
 
   const updateSearch = (e) => {
@@ -28,13 +36,9 @@ const InputField = (props) => {
 
   const getSearch = (e) => {
     e.preventDefault();
-    setFileURL(proxy + search);
+    console.log(search);
+    setFileURL(search);
     setSearch("");
-    //
-  };
-
-  const updateFile = (newFile) => {
-    props.setFile(newFile);
   };
 
   return (
