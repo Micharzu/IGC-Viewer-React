@@ -9,8 +9,6 @@ const Content = () => {
 
   const [displayMainContent, setDisplayMainContent] = useState("");
 
-  const [num, setNum] = useState("");
-
   useEffect(() => {
     if (mainContentObj) {
       console.log(mainContentObj.PLTPILOT);
