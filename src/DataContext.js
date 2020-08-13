@@ -5,17 +5,9 @@ export const DataContext = createContext();
 export const DataProvider = (props) => {
   const [flightFile, setFlightFile] = useState("");
   const [flightData, setFlightData] = useState();
-  const [flightObject, setFlightObject] = useState({
-    FRID: { registered: false, value: "" },
-    Sec: { registered: false, value: "" },
-    flightData: [],
-    DTE: { registered: false, value: "" },
-    PLTPILOT: { registered: false, value: "" },
-    GTYGLIDERTYPE: { registered: false, value: "" },
-    CIDCOMPETITIONID: { registered: false, value: "" },
-    CCLCOMPETITION_CLASS: { registered: false, value: "" },
-    TZNTIMEZONE: { registered: false, value: "" },
-  });
+  const [flightObject, setFlightObject] = useState({});
+  const [additionalContentObject, setAdditionalContentObject] = useState();
+  const [mainContentObject, setMainContentObject] = useState();
 
   useEffect(() => {
     clearData();
@@ -29,21 +21,23 @@ export const DataProvider = (props) => {
   const clearData = () => {
     console.log("Clearing Data!");
     setFlightData();
-    setFlightObject({
-      FRID: { registered: false, value: "" },
-      Sec: { registered: false, value: "" },
-      flightData: [],
-      DTE: { registered: false, value: "" },
-      PLTPILOT: { registered: false, value: "" },
-      GTYGLIDERTYPE: { registered: false, value: "" },
-      CIDCOMPETITIONID: { registered: false, value: "" },
-      CCLCOMPETITION_CLASS: { registered: false, value: "" },
-      TZNTIMEZONE: { registered: false, value: "" },
-    });
+    setFlightObject({});
+    // setFlightObject({
+    //   FRID: { registered: false, value: "" },
+    //   Sec: { registered: false, value: "" },
+    //   DTE: { registered: false, value: "" },
+    //   PLTPILOT: { registered: false, value: "" },
+    //   GTYGLIDERTYPE: { registered: false, value: "" },
+    //   CIDCOMPETITIONID: { registered: false, value: "" },
+    //   CCLCOMPETITION_CLASS: { registered: false, value: "" },
+    //   TZNTIMEZONE: { registered: false, value: "" },
+    //   flightData: [],
+    // });
   };
+
   const updateData = () => {
     if (flightFile) {
-      console.log(flightFile);
+      // console.log(flightFile);
       setFlightData(flightFile.split("\n"));
     }
   };
@@ -51,30 +45,46 @@ export const DataProvider = (props) => {
   const updateObject = async () => {
     if (flightData) {
       await updateObjectData();
-      checkFile();
+      await checkFile();
+      createContentObjects();
     }
   };
 
+  const createContentObjects = () => {
+    const {
+      FRID,
+      Sec,
+      PLTPILOT,
+      flightData,
+      ...additionalObjTemp
+    } = flightObject;
+    setAdditionalContentObject(additionalObjTemp);
+
+    const mainObjectTemp = (({ FRID, Sec, PLTPILOT, flightData }) => ({
+      FRID,
+      Sec,
+      PLTPILOT,
+      flightData,
+    }))(flightObject);
+    setMainContentObject(mainObjectTemp);
+  };
+
   const updateObjectData = () => {
-    console.log(flightData);
+    // console.log(flightData);
     if (typeof flightData === "object") {
+      flightObject.flightData = [];
       flightData.forEach((item, index) => {
         if (index === 0) {
-          const FRID = { registered: true, value: item };
-          flightObject.FRID = FRID;
+          flightObject.FRID = item;
         }
         switch (item.charAt(0)) {
           // popraw
           case "B": {
             flightObject.flightData.push(item.slice(1));
-            let flightArr = flightObject.flightData.slice();
-            flightArr.push(item.slice(1));
-            setFlightObject({ ...flightObject, [flightData]: flightArr });
             break;
           }
           case "G": {
-            const SEC = { registered: true, value: item.slice(1) };
-            flightObject.Sec = SEC;
+            flightObject.Sec = item.slice(1);
             break;
           }
           case "H": {
@@ -84,58 +94,36 @@ export const DataProvider = (props) => {
 
             switch (item.slice(2, i)) {
               case "GTYGLIDERTYPE": {
-                const GTYGLIDERTYPE = {
-                  registered: true,
-                  value: item.slice(i + characters),
-                };
-                flightObject.GTYGLIDERTYPE = GTYGLIDERTYPE;
+                flightObject.GTYGLIDERTYPE = item.slice(i + characters);
                 break;
               }
               case "CIDCOMPETITIONID": {
-                const CIDCOMPETITIONID = {
-                  registered: true,
-                  value: item.slice(i + characters),
-                };
-                flightObject.CIDCOMPETITIONID = CIDCOMPETITIONID;
+                flightObject.CIDCOMPETITIONID = item.slice(i + characters);
                 break;
               }
 
               case "CCLCOMPETITION CLASS": {
-                const CCLCOMPETITION_CLASS = {
-                  registered: true,
-                  value: item.slice(i + characters),
-                };
-                flightObject.CCLCOMPETITION_CLASS = CCLCOMPETITION_CLASS;
+                flightObject.CCLCOMPETITION_CLASS = item.slice(i + characters);
                 break;
               }
               case "TZNTIMEZONE": {
-                const TZNTIMEZONE = {
-                  registered: true,
-                  value: item.slice(i + characters),
-                };
-                flightObject.TZNTIMEZONE = TZNTIMEZONE;
+                flightObject.TZNTIMEZONE = item.slice(i + characters);
                 break;
               }
               default: {
                 if (item.includes("DTE")) {
                   if (i !== -1) {
-                    const DTE = {
-                      registered: true,
-                      value: item.slice(i + characters, i + characters + 6),
-                    };
-                    flightObject.DTE = DTE;
+                    flightObject.DTE = item.slice(
+                      i + characters,
+                      i + characters + 6
+                    );
                     break;
                   }
-                  const DTE = { registered: true, value: item.slice(5, 11) };
-                  flightObject.DTE = DTE;
+                  flightObject.DTE = item.slice(5, 11);
                   break;
                 }
                 if (item.includes("PLTPILOT")) {
-                  const PLTPILOT = {
-                    registered: true,
-                    value: item.slice(i + characters),
-                  };
-                  flightObject.PLTPILOT = PLTPILOT;
+                  flightObject.PLTPILOT = item.slice(i + characters);
                   break;
                 }
               }
@@ -143,16 +131,15 @@ export const DataProvider = (props) => {
           }
         }
       });
-      console.log(flightObject);
     }
   };
 
   const checkFile = () => {
     try {
-      if (flightObject.FRID.value.charAt(0) !== "A") {
+      if (flightObject.FRID.charAt(0) !== "A") {
         throw new Error("IGC file must contain an ID!");
       }
-      if (!flightObject.Sec.registered) {
+      if (!flightObject.Sec) {
         throw new Error("IGC file must contain a security code!");
       }
     } catch (e) {
@@ -164,7 +151,11 @@ export const DataProvider = (props) => {
     <DataContext.Provider
       value={{
         targetFile: [flightFile, setFlightFile],
-        targetObject: [flightObject, setFlightObject],
+        mainContentObject: [mainContentObject, setMainContentObject],
+        additionalContentObject: [
+          additionalContentObject,
+          setAdditionalContentObject,
+        ],
       }}
     >
       {props.children}
