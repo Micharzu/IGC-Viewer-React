@@ -38,7 +38,11 @@ const Content = () => {
       </div>
       <div className="additionalInfo">
         {Object.entries(additionalContentObj).map((prop) => (
-          <SimpleComponent key={prop[0]} text={"sampletext"} value={prop[1]} />
+          <SimpleComponent
+            key={prop[0]}
+            text={prop[1].text}
+            value={prop[1].value}
+          />
         ))}
       </div>
     </div>
