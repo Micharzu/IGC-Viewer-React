@@ -151,11 +151,8 @@ export const DataProvider = (props) => {
     <DataContext.Provider
       value={{
         targetFile: [flightFile, setFlightFile],
-        mainContentObject: [mainContentObject, setMainContentObject],
-        additionalContentObject: [
-          additionalContentObject,
-          setAdditionalContentObject,
-        ],
+        mContentObject: [mainContentObject, setMainContentObject],
+        aContentObject: [additionalContentObject, setAdditionalContentObject],
       }}
     >
       {props.children}
