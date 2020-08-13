@@ -1,0 +1,12 @@
+.componentRecord {
+  margin: 5px 0;
+  padding: 0 15px;
+  display: inline-flex;
+  border: 2px solid lightblue;
+  background: lightcyan;
+  border-radius: 10px;
+}
+
+.componentRecord h3 {
+  padding: 0 20px;
+}

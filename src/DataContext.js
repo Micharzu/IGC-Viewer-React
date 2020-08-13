@@ -50,20 +50,59 @@ export const DataProvider = (props) => {
     }
   };
 
+  const getFlightTimeInSecs = () => {
+    let firstRec = timeInSecs(flightObject.flightData[0].slice(0, 6));
+    let lastRec = timeInSecs(
+      flightObject.flightData[flightObject.flightData.length - 1].slice(0, 6)
+    );
+    return lastRec - firstRec;
+  };
+
+  const timeInSecs = (timeStr) => {
+    return (
+      parseInt(timeStr.slice(0, 2)) * 3600 +
+      parseInt(timeStr.slice(2, 4)) * 60 +
+      parseInt(timeStr.slice(4, 6))
+    );
+  };
+
   const createContentObjects = () => {
-    const {
+    //time
+    let flightTimeInSecs = getFlightTimeInSecs();
+
+    let hours = Math.trunc(flightTimeInSecs / 3600);
+    let seconds = flightTimeInSecs % 3600;
+    let minutes = Math.trunc(seconds / 60);
+    seconds = seconds % 60;
+
+    let minPref = minutes >= 10 ? "" : 0;
+    let secPref = seconds >= 10 ? "" : 0;
+
+    let flightTimeStr = `${hours}:${minPref}${minutes}:${secPref}${seconds}`;
+
+    //additionalObj base
+    let {
       FRID,
+      DTE,
       Sec,
       PLTPILOT,
       flightData,
       ...additionalObjTemp
     } = flightObject;
+
+    //extending additionalObj
+    additionalObjTemp.flightTime = flightTimeStr;
+
     setAdditionalContentObject(additionalObjTemp);
 
+    let flightDate = `${flightObject.DTE.slice(0, 2)}/${flightObject.DTE.slice(
+      2,
+      4
+    )}/20${flightObject.DTE.slice(4)}`;
+
     const mainObjectTemp = (({ FRID, Sec, PLTPILOT, flightData }) => ({
-      FRID,
-      Sec,
       PLTPILOT,
+      flightDate,
       flightData,
     }))(flightObject);
     setMainContentObject(mainObjectTemp);
