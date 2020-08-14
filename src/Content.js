@@ -29,11 +29,13 @@ const Content = () => {
           key={"PLTPILOT"}
           text={"Nazwa Pilota"}
           value={mainContentObj.PLTPILOT}
+          classAdded={"mainInfo"}
         />
         <SimpleComponent
           key={"flightDate"}
           text={"Data lotu"}
           value={mainContentObj.flightDate}
+          classAdded={"mainInfo"}
         />
       </div>
       <div className="additionalInfo">
@@ -42,6 +44,7 @@ const Content = () => {
             key={prop[0]}
             text={prop[1].text}
             value={prop[1].value}
+            classAdded={"additionalInfo"}
           />
         ))}
       </div>

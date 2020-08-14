@@ -1,5 +1,5 @@
 .componentRecord {
-  margin: 5px 0;
+  margin: 5px;
   padding: 0 15px;
   display: inline-flex;
   border: 2px solid lightblue;
@@ -9,4 +9,9 @@
 
 .componentRecord h3 {
   padding: 0 20px;
+}
+
+.componentRecord.mainInfo {
+  background: lightsalmon;
+  border-color: salmon;
 }
