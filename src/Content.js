@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { DataContext } from "./DataContext";
 
 import SimpleComponent from "./SimpleComponent";
+import Graph from "./Graph";
 
 const Content = () => {
   const { mContentObject, aContentObject } = useContext(DataContext);
@@ -47,6 +48,9 @@ const Content = () => {
             classAdded={"additionalInfo"}
           />
         ))}
+      </div>
+      <div className="graph">
+        <Graph />
       </div>
     </div>
   );
