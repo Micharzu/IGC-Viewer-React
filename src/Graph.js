@@ -61,7 +61,7 @@ const Graph = (props) => {
       }
       let currentTimeDiff = currentTimeInSecs - startTime;
 
-      //konwersja na minuty
+      //converting to minutes
       let chartRecord = {
         x: Math.round((currentTimeDiff / 60) * 10) / 10,
         y: absoluteAltitude,
