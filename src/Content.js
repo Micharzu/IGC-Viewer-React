@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { DataContext } from "./DataContext";
 
 import SimpleComponent from "./SimpleComponent";
+import Graph from "./Graph";
 
 const Content = () => {
   const { mContentObject, aContentObject } = useContext(DataContext);
@@ -20,7 +21,6 @@ const Content = () => {
   }, [displayAdditionalContent]);
 
   const objf = Object.entries(additionalContentObj);
-  console.log(objf);
 
   return (
     <div>
@@ -47,6 +47,12 @@ const Content = () => {
             classAdded={"additionalInfo"}
           />
         ))}
+      </div>
+      <div className="graph">
+        <Graph
+          flightData={mainContentObj.flightData}
+          flightTimeInSecs={mainContentObj.flightTimeInSecs}
+        />
       </div>
     </div>
   );
