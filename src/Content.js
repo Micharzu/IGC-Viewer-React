@@ -21,7 +21,6 @@ const Content = () => {
   }, [displayAdditionalContent]);
 
   const objf = Object.entries(additionalContentObj);
-  console.log(objf);
 
   return (
     <div>
@@ -50,7 +49,10 @@ const Content = () => {
         ))}
       </div>
       <div className="graph">
-        <Graph />
+        <Graph
+          flightData={mainContentObj.flightData}
+          flightTimeInSecs={mainContentObj.flightTimeInSecs}
+        />
       </div>
     </div>
   );

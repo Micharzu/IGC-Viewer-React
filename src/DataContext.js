@@ -108,6 +108,7 @@ export const DataProvider = (props) => {
       PLTPILOT,
       flightDate,
       flightData,
+      flightTimeInSecs,
     }))(flightObject);
     setMainContentObject(mainObjectTemp);
   };
