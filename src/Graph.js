@@ -135,10 +135,7 @@ const Graph = (props) => {
   }, [chartDataset]);
 
   return (
-    <div
-      className="graph"
-      style={{ position: "relative", width: 600, height: 550 }}
-    >
+    <div className="graph" style={{ position: "relative" }}>
       <Scatter data={chart.data} options={chart.options} />
     </div>
   );

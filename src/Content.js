@@ -3,6 +3,7 @@ import { DataContext } from "./DataContext";
 
 import SimpleComponent from "./SimpleComponent";
 import Graph from "./Graph";
+import Map from "./Map";
 
 const Content = () => {
   const { mContentObject, aContentObject } = useContext(DataContext);
@@ -53,6 +54,9 @@ const Content = () => {
           flightData={mainContentObj.flightData}
           flightTimeInSecs={mainContentObj.flightTimeInSecs}
         />
+      </div>
+      <div className="map">
+        <Map />
       </div>
     </div>
   );
