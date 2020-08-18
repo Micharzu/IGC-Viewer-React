@@ -1,0 +1,10 @@
+.urlInput {
+  height: 30px;
+  width: 40vw;
+  min-width: 150px;
+}
+.urlInputButton {
+  height: 36px;
+  width: 20vw;
+  min-width: 150px;
+}

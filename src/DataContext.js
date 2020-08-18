@@ -22,21 +22,10 @@ export const DataProvider = (props) => {
     console.log("Clearing Data!");
     setFlightData();
     setFlightObject({});
-    // setFlightObject({
-    //   FRID: { registered: false, value: "" },
-    //   Sec: { registered: false, value: "" },
-    //   DTE: { registered: false, value: "" },
-    //   PLTPILOT: { registered: false, value: "" },
-    //   GTYGLIDERTYPE: { registered: false, value: "" },
-    //   CCLCOMPETITION_CLASS: { registered: false, value: "" },
-    //   TZNTIMEZONE: { registered: false, value: "" },
-    //   flightData: [],
-    // });
   };
 
   const updateData = () => {
     if (flightFile) {
-      // console.log(flightFile);
       setFlightData(flightFile.split("\n"));
     }
   };
@@ -104,17 +93,29 @@ export const DataProvider = (props) => {
       4
     )}/20${flightObject.DTE.slice(4)}`;
 
+    let filteredData = flightObject.flightData.filter((item, index) => {
+      return index % 6 === 0;
+    });
+    if (
+      filteredData[filteredData.length - 1] !==
+      flightObject.flightData[flightObject.flightData.length - 1]
+    ) {
+      filteredData.push(
+        flightObject.flightData[flightObject.flightData.length - 1]
+      );
+    }
+
     const mainObjectTemp = (({ FRID, Sec, PLTPILOT, flightData }) => ({
       PLTPILOT,
       flightDate,
       flightData,
+      filteredData,
       flightTimeInSecs,
     }))(flightObject);
     setMainContentObject(mainObjectTemp);
   };
 
   const updateObjectData = () => {
-    // console.log(flightData);
     if (typeof flightData === "object") {
       flightObject.flightData = [];
       flightData.forEach((item, index) => {

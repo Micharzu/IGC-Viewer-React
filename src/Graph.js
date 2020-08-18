@@ -1,29 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Scatter } from "react-chartjs-2";
 
+const graphStyles = {
+  position: "relative",
+  width: "45%",
+  height: "50%",
+};
+
 const Graph = (props) => {
   let firstRecord = props.flightData[0];
   let lastRecord = props.flightData[props.flightData.length - 1];
 
   const [chartDataset, setChartDataset] = useState([]);
 
-  const [filteredData, setFilteredData] = useState(
-    props.flightData.filter((item, index) => {
-      return index % 6 === 0;
-    })
-  );
-
-  useEffect(() => {
-    setFilteredData(
-      props.flightData.filter((item, index) => {
-        return index % 6 === 0;
-      })
-    );
-  }, [props.flightData]);
-
   useEffect(() => {
     formatChartDataset();
-  }, [filteredData]);
+  }, [props.flightData]);
 
   let startTime;
   let chartData = [];
@@ -51,7 +43,7 @@ const Graph = (props) => {
 
   //formating chart dataSet
   const formatChartDataset = () => {
-    filteredData.forEach((item, index) => {
+    props.flightData.forEach((item, index) => {
       let absoluteAltitude = parseInt(item.slice(29, 34));
 
       let currentTimeInSecs = timeInSecs(item.slice(0, 6));
@@ -135,10 +127,7 @@ const Graph = (props) => {
   }, [chartDataset]);
 
   return (
-    <div
-      className="graph"
-      style={{ position: "relative", width: 600, height: 550 }}
-    >
+    <div className="graph" style={graphStyles}>
       <Scatter data={chart.data} options={chart.options} />
     </div>
   );

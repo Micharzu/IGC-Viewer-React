@@ -3,6 +3,7 @@ import { DataContext } from "./DataContext";
 
 import SimpleComponent from "./SimpleComponent";
 import Graph from "./Graph";
+import Map from "./Map";
 
 const Content = () => {
   const { mContentObject, aContentObject } = useContext(DataContext);
@@ -19,8 +20,6 @@ const Content = () => {
       console.log("display more");
     }
   }, [displayAdditionalContent]);
-
-  const objf = Object.entries(additionalContentObj);
 
   return (
     <div>
@@ -48,11 +47,19 @@ const Content = () => {
           />
         ))}
       </div>
-      <div className="graph">
-        <Graph
-          flightData={mainContentObj.flightData}
-          flightTimeInSecs={mainContentObj.flightTimeInSecs}
-        />
+      <div className="features">
+        <div className="graph">
+          <Graph
+            flightData={mainContentObj.filteredData}
+            flightTimeInSecs={mainContentObj.flightTimeInSecs}
+          />
+        </div>
+        <div className="map">
+          <Map
+            flightData={mainContentObj.filteredData}
+            flightTimeInSecs={mainContentObj.flightTimeInSecs}
+          />
+        </div>
       </div>
     </div>
   );
