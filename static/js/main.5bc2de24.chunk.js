@@ -1,2 +1,0 @@
-(this["webpackJsonpigc-viewer-react"]=this["webpackJsonpigc-viewer-react"]||[]).push([[0],{3:function(e,t,n){e.exports=n(9)},8:function(e,t,n){},9:function(e,t,n){"use strict";n.r(t);var r=n(0),c=n.n(r),a=n(2),i=n.n(a),l=(n(8),function(){return c.a.createElement("div",null,c.a.createElement("h2",null,"IGC VIEWER"))});i.a.render(c.a.createElement(c.a.StrictMode,null,c.a.createElement(l,null)),document.getElementById("root"))}},[[3,1,2]]]);
-//# sourceMappingURL=main.5bc2de24.chunk.js.map
