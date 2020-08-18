@@ -21,8 +21,6 @@ const Content = () => {
     }
   }, [displayAdditionalContent]);
 
-  const objf = Object.entries(additionalContentObj);
-
   return (
     <div>
       <div className="mainInfo">
@@ -49,19 +47,19 @@ const Content = () => {
           />
         ))}
       </div>
-      <div className="graph">
-        <Graph
-          flightData={mainContentObj.flightData}
-          flightTimeInSecs={mainContentObj.flightTimeInSecs}
-        />
-      </div>
-      <div className="map" style={{ width: "80vw", height: "50vh" }}>
-        <Map
-          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDrqc5R65cKDZMVxzoN172YnlLCGKiHNM4`}
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `400px` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
-        />
+      <div className="features">
+        <div className="graph">
+          <Graph
+            flightData={mainContentObj.filteredData}
+            flightTimeInSecs={mainContentObj.flightTimeInSecs}
+          />
+        </div>
+        <div className="map">
+          <Map
+            flightData={mainContentObj.filteredData}
+            flightTimeInSecs={mainContentObj.flightTimeInSecs}
+          />
+        </div>
       </div>
     </div>
   );

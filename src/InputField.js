@@ -1,22 +1,22 @@
 import React, { useEffect, useState, useContext } from "react";
 import { DataContext } from "./DataContext";
+import "./InputField.css";
 
 const InputField = () => {
   const { targetFile } = useContext(DataContext);
 
   const [flightFile, setFlightFile] = targetFile;
 
-  //przykładowy plik
+  //sampleFile
   const sampleFile =
     "https://xcportal.pl/sites/default/files/tracks/2020-06-09/069daro396091568.igc";
   //proxy
   const proxy = "https://cors-anywhere.herokuapp.com/";
 
-  //stan aktywnego url pliku igc
+  //state of URL of active igc file
   const [fileURL, setFileURL] = useState(proxy + sampleFile);
-  // const [fileURL, setFileURL] = useState("");
 
-  //stan inputa
+  //input state
   const [search, setSearch] = useState("");
 
   useEffect(() => {
