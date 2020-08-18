@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import InputField from "./InputField";
-import ContentGuard from "./ContentGuard";
+import InputField from "./Input/InputField";
+import ContentGuard from "./Content/ContentGuard";
 
 import { DataProvider } from "./DataContext";
 

@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import { DataContext } from "./DataContext";
+import { DataContext } from "../DataContext";
 import "./Content.css";
 
-import SimpleComponent from "./SimpleComponent";
-import Graph from "./Graph";
-import Map from "./Map";
+import SimpleComponent from "./Component/SimpleComponent";
+import Graph from "./Features/Graph";
+import Map from "./Features/Map";
 
 const Content = () => {
   const { mContentObject, aContentObject } = useContext(DataContext);
