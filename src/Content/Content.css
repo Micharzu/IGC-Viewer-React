@@ -1,0 +1,45 @@
+.content {
+  margin: 30px;
+}
+
+.toggleBtn {
+  margin: 10px 0;
+  border: 2px solid indianred;
+  background: indianred;
+  color: white;
+  font-size: large;
+  font-weight: 700;
+  border-radius: 20px;
+  padding: 15px;
+  transition: 0.6s;
+}
+.toggleBtn:hover {
+  background: lightcoral;
+}
+.toggleBtn:focus {
+  outline: none;
+  border: 2px solid white;
+  background: indianred;
+  color: white;
+}
+
+.features {
+  margin: 20px 0;
+  position: relative;
+  display: flex;
+  height: 40vh;
+  width: 100%;
+  justify-content: center;
+}
+
+.map {
+  position: relative;
+  height: 100%;
+  width: 47%;
+}
+
+.graph {
+  position: relative;
+  height: 100%;
+  width: 47%;
+}

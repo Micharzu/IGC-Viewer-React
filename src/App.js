@@ -1,15 +1,17 @@
 import React from "react";
 import "./App.css";
-import InputField from "./InputField";
-import ContentGuard from "./ContentGuard";
+import InputField from "./Input/InputField";
+import ContentGuard from "./Content/ContentGuard";
 
 import { DataProvider } from "./DataContext";
 
 const App = () => {
   return (
     <DataProvider>
-      <div>
-        <h2>IGC VIEWER</h2>
+      <div className="app">
+        <div className="title">
+          <h2>IGC VIEWER</h2>
+        </div>
 
         <InputField />
         <ContentGuard />

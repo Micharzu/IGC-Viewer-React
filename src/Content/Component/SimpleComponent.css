@@ -1,0 +1,27 @@
+.componentRecord {
+  margin: 5px;
+  padding: 0 15px;
+  display: inline-flex;
+  border: 2px solid #f3cd6d;
+  background: #f7de9e;
+  color: #776a4b;
+  border-radius: 5px;
+  animation: appear 1s forwards ease-out;
+  opacity: 0;
+}
+
+@keyframes appear {
+  100% {
+    opacity: 1;
+  }
+}
+
+.componentRecord h3 {
+  padding: 0 20px;
+}
+
+.componentRecord.mainInfo {
+  background: lightsalmon;
+  border-color: salmon;
+  color: rgb(255, 241, 203);
+}

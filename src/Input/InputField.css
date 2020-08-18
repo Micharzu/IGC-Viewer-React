@@ -1,0 +1,50 @@
+.urlInputForm {
+  padding: 30px 30px;
+  background: rgb(255, 239, 170);
+}
+
+.urlInputForm h3 {
+  color: rgb(112, 102, 80);
+  font-size: larger;
+}
+
+.urlInputSection {
+  padding: 5px 0;
+}
+
+.urlInput {
+  border: none;
+  height: 30px;
+  width: 40vw;
+  min-width: 150px;
+  background: rgb(255, 255, 224);
+  transition: 0.3s;
+  color: rgb(82, 76, 69);
+  font-weight: 500;
+}
+.urlInput:hover {
+  background: rgb(255, 255, 237);
+}
+
+.urlInput:focus {
+  outline: none;
+  background: white;
+}
+
+.urlInputButton {
+  padding: none;
+  height: 32px;
+  width: 20vw;
+  min-width: 150px;
+  font-size: medium;
+  font-weight: 700;
+  background: salmon;
+  color: rgb(128, 72, 66);
+  border: none;
+  transition: 0.3s;
+}
+
+.urlInputButton:hover {
+  background: rgb(216, 74, 58);
+  color: rgb(255, 232, 224);
+}

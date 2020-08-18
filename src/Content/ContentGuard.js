@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { DataContext } from "./DataContext";
+import { DataContext } from "../DataContext";
 import Content from "./Content";
 
 const ContentGuard = () => {
