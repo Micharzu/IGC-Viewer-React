@@ -8,8 +8,10 @@ import { DataProvider } from "./DataContext";
 const App = () => {
   return (
     <DataProvider>
-      <div>
-        <h2>IGC VIEWER</h2>
+      <div className="app">
+        <div className="title">
+          <h2>IGC VIEWER</h2>
+        </div>
 
         <InputField />
         <ContentGuard />

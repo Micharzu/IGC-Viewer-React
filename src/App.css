@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+  background: rgb(252, 235, 204);
+}
+
+body h2 {
+  margin: 0;
+}
+
+.title {
+  text-align: center;
+  background: rgb(243, 221, 148);
+  padding: 30px;
+  color: rgb(90, 83, 83);
+  letter-spacing: 0.5em;
+}

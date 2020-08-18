@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { DataContext } from "./DataContext";
+import "./Content.css";
 
 import SimpleComponent from "./SimpleComponent";
 import Graph from "./Graph";
@@ -14,15 +15,22 @@ const Content = () => {
   const [displayAdditionalContent, setDisplayAdditionalContent] = useState(
     false
   );
+  const [contentManagerBtnText, setContentManagerBtnText] = useState(
+    "Pokaż dodatkowe informacje"
+  );
 
-  useEffect(() => {
+  const toggleContent = () => {
     if (displayAdditionalContent) {
-      console.log("display more");
+      setDisplayAdditionalContent(false);
+      setContentManagerBtnText("Pokaż dodatkowe informacje");
+    } else {
+      setContentManagerBtnText("Ukryj dodatkowe informacje");
+      setDisplayAdditionalContent(true);
     }
-  }, [displayAdditionalContent]);
+  };
 
   return (
-    <div>
+    <div className="content">
       <div className="mainInfo">
         <SimpleComponent
           key={"PLTPILOT"}
@@ -37,29 +45,36 @@ const Content = () => {
           classAdded={"mainInfo"}
         />
       </div>
+      <button className="toggleBtn" onClick={toggleContent}>
+        {contentManagerBtnText}
+      </button>
       <div className="additionalInfo">
-        {Object.entries(additionalContentObj).map((prop) => (
-          <SimpleComponent
-            key={prop[0]}
-            text={prop[1].text}
-            value={prop[1].value}
-            classAdded={"additionalInfo"}
-          />
-        ))}
-      </div>
-      <div className="features">
-        <div className="graph">
-          <Graph
-            flightData={mainContentObj.filteredData}
-            flightTimeInSecs={mainContentObj.flightTimeInSecs}
-          />
-        </div>
-        <div className="map">
-          <Map
-            flightData={mainContentObj.filteredData}
-            flightTimeInSecs={mainContentObj.flightTimeInSecs}
-          />
-        </div>
+        {displayAdditionalContent && (
+          <>
+            {Object.entries(additionalContentObj).map((prop) => (
+              <SimpleComponent
+                key={prop[0]}
+                text={prop[1].text}
+                value={prop[1].value}
+                classAdded={"additionalInfo"}
+              />
+            ))}
+            <div className="features">
+              <div className="graph">
+                <Graph
+                  flightData={mainContentObj.filteredData}
+                  flightTimeInSecs={mainContentObj.flightTimeInSecs}
+                />
+              </div>
+              <div className="map">
+                <Map
+                  flightData={mainContentObj.filteredData}
+                  flightTimeInSecs={mainContentObj.flightTimeInSecs}
+                />
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

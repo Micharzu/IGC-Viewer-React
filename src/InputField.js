@@ -44,7 +44,7 @@ const InputField = () => {
   return (
     <div>
       <form onSubmit={getSearch} className="urlInputForm">
-        <h2>Wklej tutaj URL wybranego pliku .igc</h2>
+        <h3>Wklej tutaj URL wybranego pliku .igc</h3>
         <div className="urlInputSection">
           <input
             className="urlInput"

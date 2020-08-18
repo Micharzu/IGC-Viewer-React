@@ -3,8 +3,8 @@ import { Scatter } from "react-chartjs-2";
 
 const graphStyles = {
   position: "relative",
-  width: "45%",
-  height: "50%",
+  width: "100%",
+  height: "100%",
 };
 
 const Graph = (props) => {
@@ -12,6 +12,7 @@ const Graph = (props) => {
   let lastRecord = props.flightData[props.flightData.length - 1];
 
   const [chartDataset, setChartDataset] = useState([]);
+  const lineColor = "rgba(230, 65, 47, 0.9)";
 
   useEffect(() => {
     formatChartDataset();
@@ -69,7 +70,7 @@ const Graph = (props) => {
         {
           data: chartDataset,
           showLine: true,
-          borderColor: "rgba(10, 50, 160, 0.8)",
+          borderColor: lineColor,
 
           pointBackgroundColor: "lightblue",
           pointRadius: 0,
@@ -115,7 +116,7 @@ const Graph = (props) => {
           {
             data: chartDataset,
             showLine: true,
-            borderColor: "rgba(10, 50, 160, 0.8)",
+            borderColor: lineColor,
 
             pointBackgroundColor: "lightblue",
             pointRadius: 0,
@@ -127,7 +128,7 @@ const Graph = (props) => {
   }, [chartDataset]);
 
   return (
-    <div className="graph" style={graphStyles}>
+    <div className="graphInner" style={graphStyles}>
       <Scatter data={chart.data} options={chart.options} />
     </div>
   );

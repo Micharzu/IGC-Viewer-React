@@ -2,9 +2,10 @@
   margin: 5px;
   padding: 0 15px;
   display: inline-flex;
-  border: 2px solid lightblue;
-  background: lightcyan;
-  border-radius: 10px;
+  border: 2px solid #f3cd6d;
+  background: #f7de9e;
+  color: #776a4b;
+  border-radius: 5px;
 }
 
 .componentRecord h3 {
@@ -14,4 +15,5 @@
 .componentRecord.mainInfo {
   background: lightsalmon;
   border-color: salmon;
+  color: rgb(255, 241, 203);
 }

@@ -3,8 +3,8 @@ import { Map, GoogleApiWrapper, Marker, Polyline } from "google-maps-react";
 
 const mapStyles = {
   position: "relative",
-  width: "45%",
-  height: "50%",
+  width: "100%",
+  height: "100%",
 };
 
 const MapContainer = (props) => {
@@ -68,7 +68,7 @@ const MapContainer = (props) => {
 
   if (positions.mapPositionDD) {
     return (
-      <div className="map">
+      <div className="mapInner">
         <Map
           google={props.google}
           zoom={7}
@@ -76,15 +76,31 @@ const MapContainer = (props) => {
           initialCenter={positions.mapPositionDD}
           center={positions.mapPositionDD}
         >
-          <Marker label="Początek" position={positions.startPositionDD} />
-          <Marker label="Koniec" position={positions.finnishPositionDD} />
+          <Marker
+            label={{
+              text: "Początek",
+              fontSize: "16px",
+              fontWeight: "700",
+              color: "rgb(30, 30, 30)",
+            }}
+            position={positions.startPositionDD}
+          />
+          <Marker
+            label={{
+              text: "Koniec",
+              fontSize: "16px",
+              fontWeight: "700",
+              color: "rgb(30, 30, 30)",
+            }}
+            position={positions.finnishPositionDD}
+          />
           <Polyline
             path={pathArr}
             geodesic={true}
             options={{
-              strokeColor: "#ff2527",
+              strokeColor: "rgba(230, 65, 47, 0.9)",
               strokeOpacity: 0.75,
-              strokeWeight: 2,
+              strokeWeight: 3,
             }}
           />
         </Map>
