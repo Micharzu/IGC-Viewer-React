@@ -1,5 +1,7 @@
 App for the displaying the info of IGC files.
 
+Uses libraries google-maps-react and react-chartjs-2
+
 Should be available at URL:
 
 https://micharzu.github.io/IGC-Viewer-React/
