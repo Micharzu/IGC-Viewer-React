@@ -6,6 +6,14 @@
   background: #f7de9e;
   color: #776a4b;
   border-radius: 5px;
+  animation: appear 1s forwards ease-out;
+  opacity: 0;
+}
+
+@keyframes appear {
+  100% {
+    opacity: 1;
+  }
 }
 
 .componentRecord h3 {

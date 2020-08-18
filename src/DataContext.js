@@ -85,6 +85,61 @@ export const DataProvider = (props) => {
       value: flightTimeStr,
     };
 
+    const getTimeString = (record) => {
+      return `${record.slice(0, 2)}:${record.slice(2, 4)}:${record.slice(
+        4,
+        6
+      )}`;
+    };
+
+    let firstRec = flightObject.flightData[0];
+    let lastRec = flightObject.flightData[flightObject.flightData.length - 1];
+
+    let flightStart = getTimeString(firstRec);
+    let flightFinnish = getTimeString(lastRec);
+
+    additionalObjTemp.flightStart = {
+      text: "Odlot",
+      value: flightStart,
+    };
+    additionalObjTemp.flightFinnish = {
+      text: "Lądowanie",
+      value: flightFinnish,
+    };
+
+    const getPositionStr = (strArr) => {
+      const altitudeStr =
+        strArr.slice(6, 8) +
+        "° " +
+        strArr.slice(8, 10) +
+        "." +
+        strArr.slice(10, 13) +
+        "'" +
+        strArr.slice(13, 14);
+
+      const latitudeStr =
+        strArr.slice(14, 17) +
+        "° " +
+        strArr.slice(17, 19) +
+        "." +
+        strArr.slice(19, 22) +
+        "'" +
+        strArr.slice(22, 23);
+
+      const positionStr = altitudeStr + " " + latitudeStr;
+      return positionStr;
+    };
+
+    additionalObjTemp.startingPosition = {
+      text: "Miejsce odlotu",
+      value: getPositionStr(firstRec),
+    };
+
+    additionalObjTemp.finishingPosition = {
+      text: "Miejsce lądowania",
+      value: getPositionStr(lastRec),
+    };
+
     setAdditionalContentObject(additionalObjTemp);
 
     //mainObj
