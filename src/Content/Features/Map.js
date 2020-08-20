@@ -71,7 +71,7 @@ const MapContainer = (props) => {
       <div className="mapInner">
         <Map
           google={props.google}
-          zoom={7}
+          zoom={8}
           style={mapStyles}
           initialCenter={positions.mapPositionDD}
           center={positions.mapPositionDD}
