@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/IGC-Viewer-React/precache-manifest.004b3359bcb0cdb6115b8beb55de9b15.js"
+  "/IGC-Viewer-React/precache-manifest.69c9d6a79668f825e3b9359e121835f1.js"
 );
 
 self.addEventListener('message', (event) => {
