@@ -7,21 +7,20 @@ const InputField = () => {
 
   const [flightFile, setFlightFile] = targetFile;
 
-  //sampleFile
-  const sampleFile =
-    "https://xcportal.pl/sites/default/files/tracks/2020-06-09/069daro396091568.igc";
   //proxy
   const proxy = "https://cors-anywhere.herokuapp.com/";
 
   //state of URL of active igc file
-  const [fileURL, setFileURL] = useState(proxy + sampleFile);
+  const [fileURL, setFileURL] = useState();
 
   //input state
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    if (fileURL.slice(-4) === ".igc") {
-      getFile();
+    if (fileURL) {
+      if (fileURL.slice(-4) === ".igc") {
+        getFile();
+      }
     }
   }, [fileURL]);
 
