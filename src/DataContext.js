@@ -1,14 +1,22 @@
+//File to store and distribute data throughout the project
+
 import React, { useState, useEffect, createContext } from "react";
 
 export const DataContext = createContext();
 
 export const DataProvider = (props) => {
+  //file as a text
   const [flightFile, setFlightFile] = useState("");
+  //file as a string array
   const [flightData, setFlightData] = useState();
+  //base data object
   const [flightObject, setFlightObject] = useState({});
+
+  //objects available for other components
   const [additionalContentObject, setAdditionalContentObject] = useState();
   const [mainContentObject, setMainContentObject] = useState();
 
+  //if flightFile changes (from inside of IputField.js) update
   useEffect(() => {
     clearData();
     updateData();
@@ -30,6 +38,7 @@ export const DataProvider = (props) => {
     }
   };
 
+  // updateObjectData, check for errors, calculate other fields based on given ones and create new objects available for other components
   const updateObject = async () => {
     if (flightData) {
       await updateObjectData();
@@ -38,6 +47,7 @@ export const DataProvider = (props) => {
     }
   };
 
+  //to calculate time field
   const getFlightTimeInSecs = () => {
     let firstRec = timeInSecs(flightObject.flightData[0].slice(0, 6));
     let lastRec = timeInSecs(
@@ -54,6 +64,7 @@ export const DataProvider = (props) => {
     );
   };
 
+  //
   const createContentObjects = () => {
     //time
     let flightTimeInSecs = getFlightTimeInSecs();
@@ -68,7 +79,7 @@ export const DataProvider = (props) => {
 
     let flightTimeStr = `${hours}:${minPref}${minutes}:${secPref}${seconds}`;
 
-    //additionalObj base
+    //additional content object base
     let {
       FRID,
       DTE,
@@ -78,7 +89,7 @@ export const DataProvider = (props) => {
       ...additionalObjTemp
     } = flightObject;
 
-    //extending additionalObj
+    //extending additional content object
 
     additionalObjTemp.flightTime = {
       text: "Łączny czas lotu",
@@ -142,12 +153,15 @@ export const DataProvider = (props) => {
 
     setAdditionalContentObject(additionalObjTemp);
 
-    //mainObj
+    //main content object
+
+    //date
     let flightDate = `${flightObject.DTE.slice(0, 2)}/${flightObject.DTE.slice(
       2,
       4
     )}/20${flightObject.DTE.slice(4)}`;
 
+    //to improve performance only 1/6 of records are displayed
     let filteredData = flightObject.flightData.filter((item, index) => {
       return index % 6 === 0;
     });
@@ -160,6 +174,8 @@ export const DataProvider = (props) => {
       );
     }
 
+    //set main content object
+
     const mainObjectTemp = (({ FRID, Sec, PLTPILOT, flightData }) => ({
       PLTPILOT,
       flightDate,
@@ -170,6 +186,7 @@ export const DataProvider = (props) => {
     setMainContentObject(mainObjectTemp);
   };
 
+  //assign values to fields
   const updateObjectData = () => {
     if (typeof flightData === "object") {
       flightObject.flightData = [];
@@ -237,6 +254,7 @@ export const DataProvider = (props) => {
     }
   };
 
+  //check for errors
   const checkFile = () => {
     try {
       if (flightObject.FRID.charAt(0) !== "A") {

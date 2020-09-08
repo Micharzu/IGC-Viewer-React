@@ -16,6 +16,7 @@ const InputField = () => {
   //input state
   const [search, setSearch] = useState("");
 
+  //if active URL changes check if it is igc file and then download it
   useEffect(() => {
     if (fileURL) {
       if (fileURL.slice(-4) === ".igc") {
@@ -24,15 +25,18 @@ const InputField = () => {
     }
   }, [fileURL]);
 
+  //download file as text (variable linked to DataContext)
   const getFile = async () => {
     const response = await fetch(proxy + fileURL);
     setFlightFile(await response.text());
   };
 
+  //on change
   const updateSearch = (e) => {
     setSearch(e.target.value);
   };
 
+  //on submit
   const getSearch = (e) => {
     e.preventDefault();
     console.log(search);

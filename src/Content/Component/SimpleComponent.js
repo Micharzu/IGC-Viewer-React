@@ -1,3 +1,4 @@
+//component displaying its values
 import React from "react";
 import "./SimpleComponent.css";
 

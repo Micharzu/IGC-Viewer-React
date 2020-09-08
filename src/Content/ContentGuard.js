@@ -1,3 +1,5 @@
+//file to prevent creating content components before the data has been provided
+
 import React, { useEffect, useState, useContext } from "react";
 import { DataContext } from "../DataContext";
 import Content from "./Content";

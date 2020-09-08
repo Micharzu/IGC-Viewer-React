@@ -11,6 +11,7 @@ const MapContainer = (props) => {
   const [positions, setPositions] = useState({});
   const [pathArr, setPathArr] = useState([]);
 
+  //when provided data changes update maps dataset
   useEffect(() => {
     const firstFlightRecord = props.flightData[0];
     const lastFlightRecord = props.flightData[props.flightData.length - 1];
@@ -57,6 +58,7 @@ const MapContainer = (props) => {
     return positionInDecDeg;
   };
 
+  //format record to an object accepted by google-maps-react map
   const calculatePosition = (record) => {
     let recordObj = {
       lat: calculateDecMinToDecDeg(2, record.slice(6, 14)),
