@@ -11,9 +11,11 @@ const Graph = (props) => {
   let firstRecord = props.flightData[0];
   let lastRecord = props.flightData[props.flightData.length - 1];
 
+  //dataset - array of objects
   const [chartDataset, setChartDataset] = useState([]);
   const lineColor = "rgba(230, 65, 47, 0.9)";
 
+  //when provided data changes update dataset
   useEffect(() => {
     formatChartDataset();
   }, [props.flightData]);
@@ -21,6 +23,7 @@ const Graph = (props) => {
   let startTime;
   let chartData = [];
 
+  //calculating good interval of chart lines (not used)
   const getTimeIntervalInMins = (time) => {
     let timeInterval = [5, 10, 15, 30, 60];
 
@@ -64,6 +67,7 @@ const Graph = (props) => {
     setChartDataset(chartData);
   };
 
+  //chart object
   const [chart, setChart] = useState({
     data: {
       datasets: [
@@ -108,6 +112,7 @@ const Graph = (props) => {
     },
   });
 
+  //update chart
   useEffect(() => {
     setChart((prevState) => ({
       ...prevState,
